@@ -161,15 +161,19 @@
 
 <section style="background-color: #E6F0FA; padding: 40px 0;">
 <div style="display: flex;text-align: justify; flex-wrap: wrap; justify-content: center; align-items: center; max-width: 1000px; margin: auto; padding: 20px;">
-<img alt="Piscina Oasis Chillán" src="slide2.jpeg" style="max-width: 400px; width: 100%; height: auto; border-radius: 8px; margin: 10px;"/>
 <div style="max-width: 500px; padding: 10px 20px;">
 <h2 style="color: #0077cc; margin-bottom: 10px;">Piscina con Vista</h2>
 <p style="font-size: 16px; line-height: 1.6; color: #333;">Relájate y disfruta de nuestra piscina privada rodeada de césped y naturaleza, perfecta para toda la familia.</p>
 </div>
 </div>
-
-</div>
 </section>
+
+<div class="carousel-container">
+  <img src="slide2.jpeg" class="slide active-slide">
+<img src="slide8.jpeg" class="slide">
+<img src="slide9.jpeg" class="slide"> 
+</div>
+
 <section style="background-color: #E6F0FA; padding: 40px 0;">
 <div style="display: flex;text-align: justify; flex-wrap: wrap; justify-content: center; align-items: center; max-width: 1000px; margin: auto; padding: 20px;">
 <img alt="Espacio para Fogatas" src="slide5.jpeg" style="max-width: 400px; width: 100%; height: auto; border-radius: 8px; margin: 10px;"/>
@@ -275,6 +279,45 @@
   </div>
   </section>
 
-
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const descriptions = [
+      {
+        title: 'Quincho Amplio',
+        text: 'Disfruta de un quincho techado con parrilla profesional, perfecto para tus celebraciones en grupo.',
+        list: ['Parrilla a carbón', 'Techo de madera y luz eléctrica', 'Mesas y sillas incluidas']
+      },
+      {
+        title: 'Piscina con Vista',
+        text: 'Piscina privada rodeada de césped para refrescarte en familia o amigos.',
+        list: ['Espacio cercado', 'Sillas de descanso', 'Ideal para niños y adultos']
+      },
+      {
+        title: 'Baños y Comodidades',
+        text: 'Baños limpios y completos para tu comodidad durante el evento.',
+        list: ['Inodoros y lavamanos modernos', 'Decoración natural', 'Módulos privados']
+      }
+    ];
+  
+    let current = 0;
+  
+    function showSlide(index) {
+      slides.forEach((slide, i) => slide.classList.toggle('active-slide', i === index));
+      document.getElementById('desc-title').innerText = descriptions[index].title;
+      document.getElementById('desc-text').innerText = descriptions[index].text;
+      const ul = document.getElementById('desc-list');
+      ul.innerHTML = '';
+      descriptions[index].list.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+    }
+  
+    setInterval(() => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }, 5000);
+  </script>
 </body>
 </html>
